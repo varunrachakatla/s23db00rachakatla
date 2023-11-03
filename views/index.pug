@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title} server this is the greatest app of all time see ya later alligator.
+  button(type="button", class="btn btn-primary", onClick="goFaster()") Press Me
+  div(id="faster") Increase the speed
+  script.
+    let mph = 20;
+    let change = 1;
+
+    function goFaster() {
+        mph += change;
+        change += 1;
+        updateDisplay();
+    }
+
+    function updateDisplay() {
+        const div = document.getElementById("faster");
+        div.innerHTML = `MPH ${mph} with change ${change}`;
+    }
+  a(href="./vehicles") Go to Your Vehicle's page
