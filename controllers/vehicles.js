@@ -1,7 +1,14 @@
 var Vehicles = require("../models/vehicles");
 // List of all Costumes
-exports.vehicle_list = function (req, res) {
-    res.send('NOT IMPLEMENTED: Costume list');
+exports.vehicle_list = async function (req, res) {
+    try {
+        theVehicles = await Vehicles.find();
+        res.send(theVehicles);
+    }
+    catch (err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
 };
 // for a specific Costume.
 exports.vehicle_detail = function (req, res) {
