@@ -26,3 +26,16 @@ exports.vehicle_delete = function (req, res) {
 exports.vehicle_update_put = function (req, res) {
     res.send('NOT IMPLEMENTED: Costume update PUT' + req.params.id);
 };
+
+// VIEWS
+// Handle a show all view
+exports.vehicle_view_all_Page = async function (req, res) {
+    try {
+        theVehicles = await Vehicles.find();
+        res.render('vehicles', { title: 'Vehicle Search Results', results: theVehicles });
+    }
+    catch (err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
+};

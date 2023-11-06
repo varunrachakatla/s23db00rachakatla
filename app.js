@@ -26,16 +26,16 @@ async function recreateDB() {
   await Vehicles.deleteMany();
   let instance1 = new Vehicles({
     vehicle_type: "truck", color: 'purple',
-    Price: 1300
+    price: 1300
   });
   let instance2 = new Vehicles({
     vehicle_type: "car", color: 'white',
-    Price: 4000
+    price: 4000
   })
 
   let instance3 = new Vehicles({
     vehicle_type: "bike", color: 'black',
-    Price: 2000
+    price: 2000
   })
 
   const newArray = [instance1.save(), instance2.save(), instance3.save()];

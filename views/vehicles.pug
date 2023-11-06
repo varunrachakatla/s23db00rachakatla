@@ -2,24 +2,14 @@ extends layout
 
 block content
     h1= title
-    - class Vehicle {
-    -   constructor(vehicleType, color, price) {
-    -     this.vehicleType = vehicleType;
-    -     this.color = color;
-    -     this.price = price;
-    -   }
-    - }
-    - const car = new Vehicle("Car", "Red", 25000);
-    - const motorcycle = new Vehicle("Motorcycle", "Black", 8000);
-    - const truck = new Vehicle("Truck", "Blue", 35000);
-    - let results = [car,motorcycle,truck];
+    - let items = results
     div(class="container-fluid")
         div(class="row")
-            - for(let i=0;i<results.length;i++){
+            - for(let i=0;i<items.length;i++){
                 div(class="col-sm-2", onClick=`buy(${i})`)
-                    p Vehicle Type: #{results[i].vehicleType}
-                    p Color: #{results[i].color}
-                    p Price: $#{results[i].price}
+                    p Vehicle Type: #{items[i].vehicle_type}
+                    p Color: #{items[i].color}
+                    p Price: $#{items[i].price}
             - }
     script.
         function buy(i){
