@@ -42,8 +42,16 @@ exports.vehicle_create_post = async function (req, res) {
     }
 };
 // Handle Costume delete form on DELETE.
-exports.vehicle_delete = function (req, res) {
-    res.send('NOT IMPLEMENTED: Costume delete DELETE ' + req.params.id);
+exports.vehicle_delete = async function (req, res) {
+    console.log("delete " + req.params.id)
+    try {
+        result = await Vehicles.findByIdAndDelete(req.params.id)
+        console.log("Removed " + result)
+        res.send(result)
+    } catch (err) {
+        res.status(500)
+        res.send(`{"error": Error deleting ${err}}`);
+    }
 };
 // Handle Costume update form on PUT.
 exports.vehicle_update_put = async function (req, res) {
