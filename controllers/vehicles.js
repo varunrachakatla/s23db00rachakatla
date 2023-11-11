@@ -90,12 +90,26 @@ exports.vehicle_view_all_Page = async function (req, res) {
 
 
 // Handle a show one view with id specified by query
-exports.costume_view_one_Page = async function (req, res) {
+exports.vehicle_view_one_Page = async function (req, res) {
     console.log("single view for id " + req.query.id)
     try {
         result = await vehicles.findById(req.query.id)
         res.render('vehicledetail',
             { title: 'Vehicle Detail', toShow: result });
+    }
+    catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
+
+// Handle building the view for creating a vehicle.
+// No body, no in path parameter, no query.
+// Does not need to be async
+exports.vehicle_create_Page = function (req, res) {
+    console.log("create view")
+    try {
+        res.render('vehiclecreate', { title: 'Vehicle Create' });
     }
     catch (err) {
         res.status(500)

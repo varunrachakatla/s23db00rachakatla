@@ -6,6 +6,9 @@ var router = express.Router();
 router.get('/', vehicle_controller.vehicle_view_all_Page );
 
 /* GET detail vehicle page */
-router.get('/detail', vehicle_controller.costume_view_one_Page);
+router.get('/detail', vehicle_controller.vehicle_view_one_Page);
+
+/* GET create vehicle page */
+router.get('/create', vehicle_controller.vehicle_create_Page);
 
 module.exports = router;
