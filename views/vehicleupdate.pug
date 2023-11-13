@@ -1,25 +1,28 @@
 extends layout
 block content
     h1= title
-    - let vehicleid = toShow._id
-    - let vehicle_type = toShow.vehicle_type
-    - let color = toShow.color
-    - let price = toShow.price
-    div.row(class='mb-2')
-        div.mr-1 ID is
-            div #{vehicleid}
-    - let actionid = "/resource/vehicles/" + vehicleid
-    form(id='VehicleForm', action= actionid, method="PUT")
-        div.form-group
-            label.vehicleAttr(for='vehicle_type') Vehicle type
-            input#vehicle_type(type='text', name='vehicle_type', value= vehicle_type )
-        div.form-group
-            label.vehicleAttr(for='color') Vehicle size
-            input#color(type='text', name='color', value= color )
-        div.form-group
-            label.vehicleAttr(for='price') Vehicle cost
-            input#price(type='number', name='price', value= price )
-        input(type="submit")
+    if (toShow == null)
+        h2 No instance to show with the query id 
+    else 
+        - let vehicleid = toShow._id
+        - let vehicle_type = toShow.vehicle_type
+        - let color = toShow.color
+        - let price = toShow.price
+        div.row(class='mb-2')
+            div.mr-1 ID is
+                div #{vehicleid}
+        - let actionid = "/resource/vehicles/" + vehicleid
+        form(id='VehicleForm', action= actionid, method="PUT")
+            div.form-group
+                label.vehicleAttr(for='vehicle_type') Vehicle type
+                input#vehicle_type(type='text', name='vehicle_type', value= vehicle_type )
+            div.form-group
+                label.vehicleAttr(for='color') Vehicle size
+                input#color(type='text', name='color', value= color )
+            div.form-group
+                label.vehicleAttr(for='price') Vehicle cost
+                input#price(type='number', name='price', value= price )
+            input(type="submit")
     script.
         document.forms['VehicleForm'].addEventListener('submit', (event) => {
             event.preventDefault();
