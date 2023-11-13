@@ -93,7 +93,7 @@ exports.vehicle_view_all_Page = async function (req, res) {
 exports.vehicle_view_one_Page = async function (req, res) {
     console.log("single view for id " + req.query.id)
     try {
-        result = await vehicles.findById(req.query.id)
+        result = await Vehicles.findById(req.query.id)
         res.render('vehicledetail',
             { title: 'Vehicle Detail', toShow: result });
     }
@@ -116,3 +116,34 @@ exports.vehicle_create_Page = function (req, res) {
         res.send(`{'error': '${err}'}`);
     }
 };
+
+// Handle building the view for updating a costume.
+// query provides the id
+exports.vehicle_update_Page = async function (req, res) {
+    console.log("update view for item " + req.query.id)
+    try {
+        let result = await Vehicles.findById(req.query.id)
+        res.render('vehicleupdate', { title: 'Vehicle Update', toShow: result });
+    }
+    catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
+
+
+// Handle a delete one view with id from query
+exports.vehicle_delete_Page = async function (req, res) {
+    console.log("Delete view for id " + req.query.id)
+    try {
+        result = await Vehicles.findById(req.query.id)
+        res.render('vehicledelete', {
+            title: 'Vehicle Delete', toShow: result
+        });
+    }
+    catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
+    
