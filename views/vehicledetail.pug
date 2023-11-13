@@ -8,16 +8,25 @@ block content
         - let vehicle_type = toShow.vehicle_type
         - let vehicle_color = toShow.color
         - let vehicle_price = toShow.price
-        div
+        div.container
             div.row
-                div(class='vehicleAttr mr-3') Vehicle ID is:
-                div #{vehicle_id}
-            div.row
-                div(class='vehicleAttr mr-3') Vehicle Type is:
-                div #{vehicle_type}
-            div.row
-                div(class='vehicleAttr mr-3') Vehicle Color is:
-                div #{vehicle_color}
-            div.row
-                div(class='vehicleAttr mr-3') Vehicle Price is:
-                div #{vehicle_price}
+                div.col-md-6.mb-3
+                    .card.bg-info.text-white
+                        .card-body
+                            h5.card-title Vehicle ID
+                            p.card-text #{vehicle_id}
+                div.col-md-6.mb-3
+                    .card.bg-success.text-white
+                        .card-body
+                            h5.card-title Vehicle Type
+                            p.card-text #{vehicle_type}
+                div.col-md-6.mb-3
+                    .card.bg-warning.text-white
+                        .card-body
+                            h5.card-title Vehicle Color
+                            p.card-text #{vehicle_color}
+                div.col-md-6.mb-3
+                    .card.bg-danger.text-white
+                        .card-body
+                            h5.card-title Vehicle Price
+                            p.card-text #{vehicle_price}

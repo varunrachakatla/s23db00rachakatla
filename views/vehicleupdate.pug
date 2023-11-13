@@ -8,35 +8,49 @@ block content
         - let vehicle_type = toShow.vehicle_type
         - let color = toShow.color
         - let price = toShow.price
-        div.row(class='mb-2')
-            div.mr-1 ID is
-                div #{vehicleid}
+        div.row(class='mb-4')
+            div.col-12
+                h4 Vehicle Details
+            div.col-12
+                div.row(class='mb-2')
+                    div.col-md-2 Vehicle ID:
+                    div.col-md-4 #{vehicleid}
+                div.row(class='mb-2')
+                    div.col-md-2 Vehicle Type:
+                    div.col-md-4 #{vehicle_type}
+                div.row(class='mb-2')
+                    div.col-md-2 Vehicle Color:
+                    div.col-md-4 #{color}
+                div.row(class='mb-2')
+                    div.col-md-2 Vehicle Price:
+                    div.col-md-4 #{price}
         - let actionid = "/resource/vehicles/" + vehicleid
         form(id='VehicleForm', action= actionid, method="PUT")
             div.form-group
-                label.vehicleAttr(for='vehicle_type') Vehicle type
-                input#vehicle_type(type='text', name='vehicle_type', value= vehicle_type )
+                label.vehicleAttr(for='vehicle_type' class='form-label') Vehicle Type
+                input#vehicle_type(type='text', name='vehicle_type', value= vehicle_type class='form-control')
             div.form-group
-                label.vehicleAttr(for='color') Vehicle size
-                input#color(type='text', name='color', value= color )
+                label.vehicleAttr(for='color' class='form-label') Vehicle Color
+                input#color(type='text', name='color', value= color class='form-control')
             div.form-group
-                label.vehicleAttr(for='price') Vehicle cost
-                input#price(type='number', name='price', value= price )
-            input(type="submit")
+                label.vehicleAttr(for='price' class='form-label') Vehicle Price
+                input#price(type="number", name="price", value=price class="form-control")
+            div.form-group.d-flex.justify-content-center  
+                button.btn.btn-primary.mt-4(type="submit" class="text-center") Update  
     script.
         document.forms['VehicleForm'].addEventListener('submit', (event) => {
             event.preventDefault();
-            // TODO do something here to show user that form is being submitted
+            // TODO do something here to show the user that the form is being submitted
             fetch(event.target.action, {
                 method: 'PUT',
                 body: new URLSearchParams(new FormData(event.target)) // event.target is the form
             }).then((resp) => {
                 return resp.json(); // or resp.text() or whatever the server sends
             }).then((body) => {
-                alert("Update succeded")
+                alert("Update succeeded");
                 // TODO handle body
             }).catch((error) => {
                 // TODO handle error
-                alert("Update failed " + error )
+                alert("Update failed " + error);
             });
         });
