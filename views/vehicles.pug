@@ -6,12 +6,14 @@ block content
     div(class="container-fluid")
         div(class="row")
             - for(let i=0;i<items.length;i++){
+                - let destination = `dispatch(\"/vehicles/update?id=${items[0]._id}\")`
                 div(class="col-sm-2", onClick=`buy(${i})`)
                     p Vehicle Type: #{items[i].vehicle_type}
                     p Color: #{items[i].color}
                     p Price: $#{items[i].price}
+                    button.btn( class="btn-primary ml-1", onclick= destination) Update
             - }
     script.
-        function buy(i){
-            alert(`You purchased item ${i+1}`)
+        function dispatch(path){
+            window.location.href=path
         }
