@@ -14,6 +14,14 @@ const vehicleSchema = mongoose.Schema({
         },
     },
     color: String,
-    price: Number
+    price: {
+        type: Number,
+        validate: {
+            validator: function(v) {
+                return v >= 0; // Ensure price is non-negative
+            },
+            message: props => `${props.value} is not a valid price! Price must be a non-negative number.`,
+        },
+    },
 })
 module.exports = mongoose.model("Vehicles", vehicleSchema)
